@@ -4,9 +4,8 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/static/index.css">
 <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
-<script src="/static/js/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="/static/js/index.js"></script>
 <script src="/static/jqthumb.js"></script>
 <title>黄承喜的个人主页</title>
@@ -39,11 +38,8 @@
     </nav>
     <div class="container" style="margin-left: 0; margin-right: 0;width: 100%;">
         <div class="row">
-
-        </div>
-        <div class="row">
             <div class="col-sm-3" id="bodyScrollSpy" style="margin-top: 30px;">
-                <div class="panel panel-default" style="background-color: white; border-radius: 4px;" data-spy="affix">
+                <div class="panel panel-default" style="background-color: white; border-radius: 4px;">
                     <div class="panel-heading">工具栏</div>
                     <div class="panel-body">
                         <ul class="nav nav-pills nav-stacked">
@@ -51,6 +47,30 @@
                             <li><a href="#recommendedBook">推荐书籍</a></li>
                             <li><a href="#picWall">照片墙</a></li>
                         </ul>
+                    </div>
+                </div>
+                <div class="panel panel-default" style="background-color: white; border-radius: 4px; margin-top: 30px">
+                    <div class="panel-heading">笔记</div>
+                    <div class="panel-body">
+                        <div th:if="${types.size()<=0}">暂时无数据</div>
+                        <div class="panel-group" th:if="${types.size()>0}" id="types">
+                            <div class="panel panel-success" th:each="type:${types}">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#types" th:text="${type.getName()}" th:href="'#type_'+${type.getId()}"></a>
+                                    </h4>
+                                </div>
+                                <div class="panel-collapse collapse" th:id="'type_'+${type.getId()}">
+                                    <div class="panel-body">
+                                        <ul class="nav nav-pills nav-stacked">
+                                            <li th:each="exp:${exps}" th:if="${exp.getSharedExperienceType().getId()==type.getId()}">
+                                                <a th:href="'/note/'+${exp.getId()}" th:text="${exp.getTitle()}"></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

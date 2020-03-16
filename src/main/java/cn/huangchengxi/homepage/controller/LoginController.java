@@ -1,14 +1,14 @@
 /*    */ package cn.huangchengxi.homepage.controller;
 /*    */ 
-/*    */ import cn.huangchengxi.homepage.entity.RecommendedBook;
-/*    */ import cn.huangchengxi.homepage.entity.SysRole;
-/*    */ import cn.huangchengxi.homepage.entity.User;
-/*    */ import cn.huangchengxi.homepage.entity.UserProperties;
-/*    */ import cn.huangchengxi.homepage.entity.ValidateCode;
-/*    */ import cn.huangchengxi.homepage.repository.CodeRepository;
-/*    */ import cn.huangchengxi.homepage.repository.RecommendedBookRepository;
-/*    */ import cn.huangchengxi.homepage.repository.UserPropertiesRepository;
-/*    */ import cn.huangchengxi.homepage.repository.UserRepository;
+/*    */ import cn.huangchengxi.homepage.entity.*;
+/*    */
+/*    */
+/*    */
+/*    */
+/*    */ import cn.huangchengxi.homepage.repository.*;
+/*    */
+/*    */
+/*    */
 /*    */ import cn.huangchengxi.homepage.results.LoginMessage;
 /*    */ import com.alibaba.fastjson.JSON;
 /*    */ import com.alibaba.fastjson.JSONObject;
@@ -35,15 +35,23 @@
 /*    */   RecommendedBookRepository bookRepository;
 /*    */   @Autowired
 /*    */   UserPropertiesRepository userPropertiesRepository;
+           @Autowired
+            ExpTypeRepository expTypeRepository;
+           @Autowired
+           ExpRepository expRepository;
 /*    */   
 /*    */   @RequestMapping({"/index"})
 /*    */   public String index(Model model, HttpSession session) {
 /* 41 */     List<RecommendedBook> books = this.bookRepository.findAll();
+                List<SharedExperienceType> types=expTypeRepository.findAll();
+                List<SharedExperience> exps=expRepository.findAll();
 /* 42 */     if (session.getAttribute("isLogin") == null) {
-/* 43 */       model.addAttribute("login", Boolean.valueOf(false));
+/* 43 */       model.addAttribute("login", Boolean.FALSE);
 /*    */     } else {
-/* 45 */       model.addAttribute("login", Boolean.valueOf(true));
-/*    */     } 
+/* 45 */       model.addAttribute("login", Boolean.TRUE);
+/*    */     }
+                model.addAttribute("exps",exps);
+            model.addAttribute("types",types);
 /* 47 */     model.addAttribute("books", books);
 /* 48 */     return "index";
 /*    */   }
@@ -85,7 +93,7 @@
 /*    */       } 
 /*    */       
 /* 87 */       user = new User((new BCryptPasswordEncoder()).encode(password), email);
-/* 88 */       user.setRoles(Arrays.asList(new SysRole[] { new SysRole(Long.valueOf(2L)) }));
+/* 88 */       user.setRoles(Arrays.asList(new SysRole[] { new SysRole(Long.valueOf(1L)) }));
 /* 89 */       UserProperties userProperties = new UserProperties(0, "暂未设置", null, null);
 /* 90 */       userProperties.setUser(user);
 /* 91 */       this.repository.save(user);

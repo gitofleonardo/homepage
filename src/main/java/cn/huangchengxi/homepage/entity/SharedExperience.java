@@ -10,7 +10,7 @@
 /*    */ public class SharedExperience {
 /*    */   @Id
 /*    */   @GeneratedValue
-/*    */   private String id;
+/*    */   private Long id;
 /*    */   @ManyToOne
 /*    */   @JoinColumn(name = "type_id", foreignKey = @ForeignKey(name = "fk_type_exp"))
 /*    */   private SharedExperienceType sharedExperienceType;
@@ -21,9 +21,12 @@
 /* 20 */     this.content = content;
 /*    */   } private String title; private String content;
 /*    */   public SharedExperience() {}
-/*    */   public String getId() {
-/* 24 */     return this.id;
-/*    */   }
+
+    public Long getId() {
+        return id;
+    }
+
+    /*    */
 /*    */   
 /*    */   public SharedExperienceType getSharedExperienceType() {
 /* 28 */     return this.sharedExperienceType;
@@ -36,10 +39,13 @@
 /*    */   public String getTitle() {
 /* 36 */     return this.title;
 /*    */   }
-/*    */   
-/*    */   public void setId(String id) {
-/* 40 */     this.id = id;
-/*    */   }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /*    */
+/*    */
 /*    */   
 /*    */   public void setContent(String content) {
 /* 44 */     this.content = content;
