@@ -14,11 +14,13 @@
 /*    */ import com.alibaba.fastjson.JSONObject;
 /*    */ import com.fasterxml.jackson.databind.ObjectMapper;
 /*    */ import java.util.Arrays;
-/*    */ import java.util.List;
+/*    */ import java.util.Collection;
+import java.util.List;
 /*    */ import javax.servlet.http.HttpSession;
 /*    */ import javax.transaction.Transactional;
 /*    */ import org.springframework.beans.factory.annotation.Autowired;
-/*    */ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+/*    */ import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 /*    */ import org.springframework.stereotype.Controller;
 /*    */ import org.springframework.ui.Model;
 /*    */ import org.springframework.web.bind.annotation.RequestBody;
@@ -53,6 +55,19 @@
                 model.addAttribute("exps",exps);
             model.addAttribute("types",types);
 /* 47 */     model.addAttribute("books", books);
+    Collection<? extends GrantedAuthority> auths=(Collection<? extends GrantedAuthority>) session.getAttribute("auths");
+    if (auths!=null){
+        model.addAttribute("isAdmin",false);
+        for (GrantedAuthority auth:auths){
+            if (auth.getAuthority().equals("role_admin")){
+                System.out.println("set is admin");
+                model.addAttribute("isAdmin",true);
+                break;
+            }
+        }
+    }else{
+        model.addAttribute("isAdmin",false);
+    }
 /* 48 */     return "index";
 /*    */   }
 /*    */   @RequestMapping({"/"})
@@ -93,7 +108,7 @@
 /*    */       } 
 /*    */       
 /* 87 */       user = new User((new BCryptPasswordEncoder()).encode(password), email);
-/* 88 */       user.setRoles(Arrays.asList(new SysRole[] { new SysRole(Long.valueOf(1L)) }));
+/* 88 */       user.setRoles(Arrays.asList(new SysRole(1L)));
 /* 89 */       UserProperties userProperties = new UserProperties(0, "暂未设置", null, null);
 /* 90 */       userProperties.setUser(user);
 /* 91 */       this.repository.save(user);

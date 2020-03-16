@@ -34,7 +34,7 @@
 /*    */ 
 /*    */   
 /*    */   public void addInterceptors(InterceptorRegistry registry) {
-/* 37 */     registry.addInterceptor((HandlerInterceptor)this.adminResInterceptor).addPathPatterns("/imageResource/**", "/bookManage/**", "/bookManage");
+/* 37 */     registry.addInterceptor((HandlerInterceptor)this.adminResInterceptor).addPathPatterns("/imageResource/**", "/bookManage/**", "/bookManage","/modification","/modification/**","/postNote","/publication");
 /* 38 */     registry.addInterceptor((HandlerInterceptor)this.loginResInterceptor).addPathPatterns("/center", "/img/**", "/infos", "/modifyinfos", "/modifyinfos-processing");
 /*    */   }
 /*    */ }

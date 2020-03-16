@@ -29,7 +29,9 @@
                     <li><a href="http://www.huangchengxi.cn:8080/Exam/index.jsp">2019Web实验</a></li>
                     <li onclick="contactMe()"><a href="#">QQ联系我</a></li>
                     <li><a href="mailto:971840889@qq.com">给我发送邮件</a></li>
-                    <li><a href="/bookManage">书本管理</a></li>
+                    <li th:if="${isAdmin}"><a href="/bookManage">书本管理</a></li>
+                    <li th:if="${isAdmin}"><a href="/publication">添加笔记</a></li>
+                    <li th:if="${isAdmin}" onclick="newType()"><a href="#">新增板块</a></li>
                     <li th:if="${login}"><a href="/center">个人中心</a></li>
                     <li th:if="${!login}"><a href="/login">登录</a></li>
                 </ul>

@@ -1,19 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title th:text="'笔记详情-'+${experience.getTitle()}"></title>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script>
-        var contentContainer=document.getElementById("content-container")
-        var text=[[${experience.getContent()}]]
-        text=text.replaceAll("\n","<br>")
-        contentContainer.innerText=text
+    <script th:inline="javascript">
+        $(document).ready(function () {
+            var contentContainer=document.getElementById("note-content")
+            var text=[[${experience.getContent()}]]
+            console.log(text)
+            text=text.replace(/\r\n/g,"<br>")
+            contentContainer.innerText=text
+        })
     </script>
+    <style>
+        .edit{
+            position: absolute;
+            top: 20px;
+            right: 40px;
+        }
+    </style>
 </head>
-<body>
+<body style="background-color: #4ec8f7">
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -26,7 +36,7 @@
         </div>
         <div class="collapse navbar-collapse" id="menu-list">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="">主页</a></li>
+                <li class="active"><a href="/">主页</a></li>
                 <li><a href="/xujinhua">徐金华的主页</a></li>
                 <li><a href="/dengyanqing">访问邓燕清的主页</a></li>
                 <li><a href="http://www.huangchengxi.cn:8080/Exam/index.jsp">2019Web实验</a></li>
@@ -42,7 +52,7 @@
 <div class="container" style="width: 100%">
     <div class="row">
         <div class="col-sm-3">
-            <div class="panel panel-default" style="background-color: white; border-radius: 4px; margin-top: 30px">
+            <div class="panel panel-default" style="background-color: white; border-radius: 4px;">
                 <div class="panel-heading">笔记</div>
                 <div class="panel-body">
                     <div th:if="${types.size()<=0}">暂时无数据</div>
@@ -66,12 +76,15 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-9">
-                <div class="panel panel-default">
-                    <div class="panel-heading" th:text="${experience.getTitle()}"></div>
-                    <div class="panel panel-body" id="content-container">
+        </div>
+        <div class="col-sm-9">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 th:text="${experience.getTitle()}"></h4>
+                    <a class="edit" th:if="${isAdmin}" th:href="'/modification/'+${experience.getId()}">编辑</a>
+                </div>
+                <div class="panel panel-body" id="note-content">
 
-                    </div>
                 </div>
             </div>
         </div>

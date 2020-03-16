@@ -234,6 +234,10 @@ function loadImages(page){
                     var result=JSON.parse(text)
                     var imageContainer=document.getElementById("picWallContainer")
                     var images=result["_embedded"]["images"]
+                    if (images.length==0){
+                        showNoImage()
+                        return
+                    }
                     console.log(images)
                     imageContainer.innerHTML=""
                     for (var i=0;i<images.length;i++){
@@ -297,6 +301,35 @@ function testImageConnection(){
     }
     xh.send("")
 }
+function newType() {
+    var type=prompt("输入板块名称")
+    if (type!==""){
+        var data={}
+        data["name"]=type
+        var xh=new XMLHttpRequest()
+        xh.open("POST","/postExpType",true)
+        xh.onreadystatechange=function () {
+            if (xh.readyState==4){
+                if (xh.status==200){
+                    try {
+                        var result=JSON.parse(xh.responseText)
+                        if (result["success"]){
+                            alert("新增成功")
+                            window.location.href="/"
+                        }else{
+                            alert("增加失败")
+                        }
+                    }catch (e) {
+                        alert("增加失败")
+                    }
+                }
+            }
+        }
+        xh.send(JSON.stringify(data))
+    }else{
+        alert("名称不能为空")
+    }
+}
 function showNoPermissionOnAlbum(){
     var picWallBoxy=document.getElementById("picWallBody")
     picWallBoxy.innerText=""
@@ -304,6 +337,15 @@ function showNoPermissionOnAlbum(){
     alert.classList.add("alert")
     alert.classList.add("alert-warning")
     alert.innerText="您无权查看此相册"
+    picWallBoxy.appendChild(alert)
+}
+function showNoImage(){
+    var picWallBoxy=document.getElementById("picWallBody")
+    picWallBoxy.innerText=""
+    var alert=document.createElement("div")
+    alert.classList.add("alert")
+    alert.classList.add("alert-warning")
+    alert.innerText="没有照片"
     picWallBoxy.appendChild(alert)
 }
 function drawImg(img){
