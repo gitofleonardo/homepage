@@ -1,0 +1,213 @@
+html{
+    width: 100%;
+    position: relative;
+}
+body{
+    width:100%;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    background: url(/static/img/d-bg.jpg);
+}
+.body-container{
+    width: 100%;;
+    height: 100%;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+}
+.nav-head{
+    width: 120%;
+    height: 250px;
+    min-height: 250px;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    background: url(/static/img/d-bg.jpg);
+    filter: blur(10px);
+    overflow: hidden;
+    margin: -50px;
+}
+.nav-head-before{
+    min-width: 100%;
+    width: 100%;
+    height: 200px;
+    min-height: 200px;
+    content: '';
+    position: relative;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+.nav-des-container{
+    width: 100%;
+    min-height: 200px;
+    color: white;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.nav-head-des{
+    width: 400px;
+    min-width: 400px;
+    background-color: pink;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.nav-items-container{
+    top: 100px;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.nav-item{
+    color: white;
+    width: 100px;
+    height: 50px;
+    background-color: pink;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    margin-right: 50px;
+}
+.item-head-container{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.yiyangqianxi-pics{
+    margin-top: 100px;
+    width: 100%;
+    min-height: 400px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.y-pic-item{
+    width: 200px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.y-pic{
+    width: 200px;
+}
+.block-text{
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 150px;
+    background-color: pink;
+    border-radius: 5px;
+    color: white;
+}
+.map-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 50px;
+}
+.map-right-text-container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.bottom-text-container{
+    margin-top: 50px;
+    background-color: pink;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.boxes-container{
+    margin-top: 50px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 400px 400px;
+    align-items: center;
+    justify-content: center;
+}
+.box-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.box-blur{
+    width: 200px;
+    height: 300px;
+    background: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    filter: blur(5px);
+}
+.box{
+    background-color: hsla(0, 0%, 100%, 0.1);
+    width: 200px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: pink;
+    border-radius: 10px;
+}
+.box-picture{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 10%;
+    left: 25%;
+}
+.box-text{
+    width: 100%;
+    position: absolute;
+    top: 10%;
+    left: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}

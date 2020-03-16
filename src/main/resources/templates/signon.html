@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../static/signon.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="/static/js/signon.js"></script>
+<title>注册</title>
+</head>
+<body class="body">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <form class="form-horizontal col-sm-6" role="form" onsubmit="return onSubmit()" style="background-color: white; border-radius: 10px;">
+                <div class="row col-sm-12" style="margin-top: 20px;">
+                    <div class="col-sm-4"></div>
+                    <h2>现在注册</h2>
+                </div>
+                <div class="form-group" id="emailGroup">
+                    <div class="col-sm-10" style="margin-top: 10px;">
+                        <label for="email">输入邮箱</label>
+                        <input type="text" id="email" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group" id="passwordGroup">
+                    <div class="col-sm-10">
+                        <label for="password">输入密码</label>
+                        <input type="password" id="password" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group" id="repeatPasswordGroup">
+                    <div class="col-sm-10">
+                        <label for="passwordRepeat">再次输入密码</label>
+                        <input type="password" id="passwordRepeat" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group" id="validateGroup">
+                    <div class="col-sm-6">
+                        <label for="validate">邀请码</label>
+                        <input type="text" id="validate" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group" id="errorGroup" style="display: none;">
+                    <div class="col-sm-10">
+                        <div class="alert alert-danger" id="inputError"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <a href="#" style="color: grey;" onclick="openQQ()">联系我</a>
+                    </div>
+                </div>
+                <button class="btn btn-primary" style="margin-bottom: 20px;" id="signOnButton">现在注册</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
