@@ -28,8 +28,8 @@
 /* 28 */     registry.addResourceHandler("/pages/**").addResourceLocations("classpath:/templates/pages/");
 /* 29 */     registry.addResourceHandler("/xujinhua/**").addResourceLocations("classpath:/templates/xujinhua/");
 /* 30 */     registry.addResourceHandler("/dengyanqing/**").addResourceLocations("classpath:/templates/dengyanqing/");
-/* 31 */     registry.addResourceHandler("/imageResource/**").addResourceLocations("classpath:/static/imageResource/");
-/* 32 */     registry.addResourceHandler("/img/**").addResourceLocations("classpath:/static/img/");
+/* 31 */     registry.addResourceHandler("/imageResource/**").addResourceLocations("file:C:/server-images-protected");
+/* 32 */     registry.addResourceHandler("/img/**").addResourceLocations("file:C:/server-images");
 /*    */   }
 /*    */ 
 /*    */   
