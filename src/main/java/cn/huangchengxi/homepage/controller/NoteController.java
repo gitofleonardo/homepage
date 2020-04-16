@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 public class NoteController {
@@ -26,7 +23,38 @@ public class NoteController {
     ExpRepository expRepository;
     @Autowired
     ExpTypeRepository expTypeRepository;
-
+    @RequestMapping("/notes")
+    @ResponseBody
+    public List<Experiences> notes(){
+        List<Experiences> exps=new ArrayList<>();
+        List<SharedExperienceType> types=expTypeRepository.findAll();
+        for (SharedExperienceType type:types){
+            Experiences experiences=new Experiences();
+            experiences.id=type.getId();
+            experiences.name=type.getName();
+            experiences.logoUrl=type.getLogoUrl();
+            List<SharedExperience> se=expRepository.findAllBySharedExperienceType(type);
+            System.out.println(se.size());
+            for (SharedExperience s:se){
+                Experience experience=new Experience();
+                experience.id=s.getId();
+                experience.title=s.getTitle();
+                experiences.experiences.add(experience);
+            }
+            exps.add(experiences);
+        }
+        return exps;
+    }
+    static class Experiences{
+        public String logoUrl;
+        public Long id;
+        public String name;
+        public List<Experience> experiences=new ArrayList<>();
+    }
+    static class Experience{
+        public Long id;
+        public String title;
+    }
     @RequestMapping("/note/{id}")
     public String note(@PathVariable Long id, Model model, HttpSession session){
         Optional<SharedExperience> experience=expRepository.findById(id);

@@ -1,0 +1,185 @@
+div.nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 3rem;
+    border-radius: 2px;
+    z-index: 1;
+}
+div.nav .mask{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background-color: transparent;
+    z-index: -1;
+    transition-duration: 500ms;
+}
+div.nav .menu{
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+}
+div.nav .menu li{
+    margin-left: 5px;
+    margin-right: 5px;
+    display: inline-flex;
+    flex-direction: column;
+    height: 50px;
+    transition-duration: 200ms;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 5px solid transparent;
+}
+div.nav .menu li:hover{
+    color: grey;
+    border-bottom:10px solid pink;
+}
+div.nav .menu a{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    display: inline-block;
+    background-color: transparent;
+    color: white;
+    line-height: 100%;
+    text-align: center;
+    text-decoration: none;
+}
+div.nav img.logo{
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+}
+div.nav .search-bar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: auto;
+    left: 50%;
+    margin-left: -150px;
+    border-radius: 5px;
+    transition-duration: 500ms;
+}
+div.nav .search-bar input{
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    padding-left: 5px;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 5px;
+    border: none;
+    outline: none;
+    width: 300px;
+    height: 30px;
+}
+div.nav .search-bar button{
+    width: 60px;
+    height: 30px;
+    background-color: rgb(214, 214, 214);
+    border: none;
+    color: white;
+    text-align: center;
+    outline: none;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+div.nav .menu div.toggle-menu{
+    width: auto;
+    display: inline-block;
+    position: relative;
+}
+div.nav .menu div.toggle-menu ul{
+    top: 100%;
+    left: 0;
+    position: absolute;
+    padding: 0;
+    display:none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: 1px 1px 10px rgb(219, 219, 219);
+    transition-duration: 500ms;
+    width:10rem;
+    height:auto;
+    overflow: hidden;
+}
+div.nav .menu div.toggle-menu li.toggle-title{
+    border-bottom:5px solid transparent;
+}
+div.nav .menu div.toggle-menu li.toggle-title:hover{
+    border-bottom:5px solid transparent;
+}
+div.nav .menu li.toggle-menu:hover{
+    border-bottom:5px solid transparent;
+}
+div.nav .menu li.toggle-menu a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+div.nav .menu div.toggle-menu li.toggle-title a{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+div.nav .menu div.toggle-menu li.toggle-title a::after{
+    content:"";
+    display: block;
+    background-image: url(../imgs/down.png);
+    background-size: 20px 20px;
+    width: 20px;
+    height: 20px;
+    transition-duration: 500ms;
+}
+div.nav .menu div.toggle-menu:hover a::after{
+    transform: rotate(180deg);
+}
+div.nav .menu div.toggle-menu ul:hover{
+    transition-duration: 500ms;
+    display: flex;
+    height:auto;
+}
+div.nav .menu div.toggle-menu:hover ul{
+    transition-duration: 500ms;
+    display: flex;
+    height: auto;
+}
+div.nav .menu div.toggle-menu ul li{
+    width: 10rem;
+    margin: 0px;
+    height: 40px;
+    color: grey;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+div.nav .menu div.toggle-menu ul li:hover{
+    border: none;
+    background-color: rgb(230, 230, 230);
+}
+div.nav .menu div.toggle-menu ul li a{
+    display: inline-block;
+    color: grey;
+    margin: auto;
+    padding: auto;
+}
+.login-menu{
+    right: 100px;
+    position: absolute;
+}

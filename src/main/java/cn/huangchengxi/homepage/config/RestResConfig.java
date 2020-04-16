@@ -2,7 +2,9 @@
 /*    */ 
 /*    */ import cn.huangchengxi.homepage.entity.Country;
 /*    */ import cn.huangchengxi.homepage.entity.RecommendedBook;
-/*    */ import org.springframework.context.annotation.Configuration;
+/*    */ import cn.huangchengxi.homepage.entity.SharedExperience;
+import cn.huangchengxi.homepage.entity.SharedExperienceType;
+import org.springframework.context.annotation.Configuration;
 /*    */ import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 /*    */ import org.springframework.data.rest.core.mapping.RepositoryDetectionStrategy;
 /*    */ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -12,7 +14,7 @@
 /*    */   implements RepositoryRestConfigurer {
 /*    */   public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
 /* 14 */     config.setRepositoryDetectionStrategy((RepositoryDetectionStrategy)RepositoryDetectionStrategy.RepositoryDetectionStrategies.ANNOTATED);
-/* 15 */     config.exposeIdsFor(RecommendedBook.class,Country.class);
+/* 15 */     config.exposeIdsFor(RecommendedBook.class,Country.class, SharedExperienceType.class, SharedExperience.class);
 /* 16 */
 /*    */   }
 /*    */ }

@@ -1,6 +1,7 @@
 /*    */ package cn.huangchengxi.homepage.controller;
 /*    */ 
-/*    */ import cn.huangchengxi.homepage.entity.*;
+/*    */ import cn.huangchengxi.homepage.aop.Action;
+import cn.huangchengxi.homepage.entity.*;
 /*    */
 /*    */
 /*    */
@@ -41,7 +42,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
             ExpTypeRepository expTypeRepository;
            @Autowired
            ExpRepository expRepository;
-/*    */   
+
+           @Action(name = "首页拦截")
 /*    */   @RequestMapping({"/index"})
 /*    */   public String index(Model model, HttpSession session) {
 /* 41 */     List<RecommendedBook> books = this.bookRepository.findAll();
@@ -51,6 +53,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 /* 43 */       model.addAttribute("login", Boolean.FALSE);
 /*    */     } else {
 /* 45 */       model.addAttribute("login", Boolean.TRUE);
+String name=(String)session.getAttribute("username");
+model.addAttribute("username",name);
 /*    */     }
                 model.addAttribute("exps",exps);
             model.addAttribute("types",types);

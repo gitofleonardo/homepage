@@ -1,10 +1,15 @@
 /*    */ package cn.huangchengxi.homepage.entity;
 /*    */ 
-/*    */ import javax.persistence.Entity;
-/*    */ import javax.persistence.GeneratedValue;
-/*    */ import javax.persistence.Id;
-/*    */ 
-/*    */ 
+/*    */ import cn.huangchengxi.homepage.repository.ExpRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import javax.persistence.*;
+/*    */
+/*    */
+import java.util.List;
+
+/*    */
 /*    */ @Entity
 /*    */ public class SharedExperienceType
 /*    */ {
@@ -12,11 +17,15 @@
 /*    */   @GeneratedValue
 /*    */   private Long id;
 /*    */   private Long createTime;
-/*    */   
+/*    */   private String name;
+private String logoUrl;
+@OneToMany(mappedBy = "sharedExperienceType",cascade = CascadeType.DETACH,fetch = FetchType.LAZY)
+private List<SharedExperience> experiences;
 /*    */   public SharedExperienceType(Long createTime, String name) {
 /* 17 */     this.createTime = createTime;
 /* 18 */     this.name = name;
-/*    */   } private String name;
+//experiences=repository.findAllById(id);
+/*    */   }
 /*    */   public SharedExperienceType() {}
 /*    */   public Long getId() {
 /* 22 */     return this.id;
@@ -41,7 +50,23 @@
 /*    */   public void setCreateTime(Long createTime) {
 /* 42 */     this.createTime = createTime;
 /*    */   }
-/*    */ }
+
+    public List<SharedExperience> getExperiences() {
+        return experiences;
+    }
+
+    public void setExperiences(List<SharedExperience> experiences) {
+        this.experiences = experiences;
+    }
+
+    public String getLogoUrl() {
+        return logoUrl;
+    }
+
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
+    }
+    /*    */ }
 
 
 /* Location:              C:\Users\xixih\Desktop\BOOT-INF\classes\!\cn\huangchengxi\homepage\entity\SharedExperienceType.class
