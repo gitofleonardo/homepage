@@ -1,0 +1,95 @@
+.drawer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+.drawer .header{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+.drawer .drawer-navigation{
+    position: relative;
+    width: 200px;
+    height: 500px;
+    transition-duration: 500ms;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: skyblue;
+}
+.drawer .drawer-navigation li{
+    word-break: break-all;
+    margin: 0;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height:auto;
+    transition-duration: 500ms;
+    color: white;
+}
+.drawer .drawer-navigation ul{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+.drawer .drawer-navigation::-webkit-scrollbar{
+    display: none;
+}
+.drawer .drawer-navigation ul::-webkit-scrollbar{
+    display: none;
+}
+.drawer .drawer-navigation li:hover{
+    background-color: #43ceff;
+}
+.drawer .drawer-navigation li.active{
+    background-color: #43ceff;
+}
+.drawer .header .toggle-menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 10px;
+    margin: auto;
+    padding:auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    transition-duration: 500ms;
+}
+.drawer .header h4{
+    margin-left: 100px;
+    padding: auto;
+    color: grey;
+}
+.drawer .header .toggle-menu:hover{
+    background-color: rgb(230, 230, 230);
+}
+.drawer .drawer-right{
+    width: 80%;
+    background-color: white;
+}
+.drawer .drawer-body{
+    width:100%;
+    height: 100%;
+    margin: 10px;
+}
+.drawer .drawer-body span{
+    word-break: break-all;
+}

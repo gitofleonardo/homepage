@@ -5,6 +5,7 @@ div.nav{
     justify-content: flex-start;
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
     height: 3rem;
     border-radius: 2px;
@@ -21,8 +22,8 @@ div.nav .mask{
 }
 div.nav .menu{
     display: block;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     height: 100%;
 }
 div.nav .menu li{
@@ -72,10 +73,7 @@ div.nav .search-bar{
 div.nav .search-bar input{
     border-top-left-radius: 2px;
     border-bottom-left-radius: 2px;
-    padding-left: 5px;
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-right: 5px;
+    padding: 0 5px;
     border: none;
     outline: none;
     width: 300px;
@@ -160,7 +158,7 @@ div.nav .menu div.toggle-menu:hover ul{
 }
 div.nav .menu div.toggle-menu ul li{
     width: 10rem;
-    margin: 0px;
+    margin: 0;
     height: 40px;
     color: grey;
     display: flex;

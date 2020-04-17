@@ -9,16 +9,20 @@
         <script src="./static/javascript/jquery-3.5.0.min.js"></script>
         <script src="./static/javascript/vue.min.js"></script>
         <script src="./static/javascript/index.js"></script>
+        <script src="./static/javascript/drawer.js"></script>
+        <script src="./static/javascript/dialog.js"></script>
         <link rel="stylesheet" href="./static/css/index.css">
         <link rel="stylesheet" href="./static/css/nav.css">
         <link rel="stylesheet" href="./static/css/card.css">
+        <link rel="stylesheet" href="./static/css/drawer.css">
+        <link rel="stylesheet" href="./static/css/dialog.css">
     </head>
     <body>
         <div class="nav">
             <div class="mask" id="nav-mask"></div>
             <img src="./static/imgs/logo1.png" class="logo">
             <ul class="menu">
-                <li><a>主页</a></li>
+                <li><a href="/">主页</a></li>
                 <div class="toggle-menu">
                     <li class="toggle-title"><a>关于</a></li>
                     <ul>
@@ -30,12 +34,13 @@
             </ul>
             <ul class="menu login-menu">
                 <div class="toggle-menu">
-                    <li class="toggle-title" th:if="${!login}"><a href="/login">登录</a></li>
+                    <li class="toggle-title" th:if="${!login}"><a data-dialog="login-dialog" onclick="showDialog(this)">登录</a></li>
                     <li class="toggle-title" th:if="${login}"><a th:text="${username}"></a></li>
                     <ul>
                         <li th:if="${isAdmin}"><a href="/bookManage">书本管理</a></li>
                         <li th:if="${isAdmin}"><a href="/publication">添加笔记</a></li>
-                        <li th:if="${isAdmin}"><a>新增板块</a></li>
+                        <li th:if="${isAdmin}" onclick="newType()"><a>新增板块</a></li>
+                        <li th:if="${login}"><a href="/logout">注销</a></li>
                         <li><a href="/center">个人中心</a></li>
                     </ul>
                 </div>
@@ -56,13 +61,17 @@
                             <div class="flow-item" v-for="type in col">
                                 <div class="card">
                                     <div class="card-title">
-                                        <img class="avatar" :src="type.logoUrl==null?'/static/imgs/default-note.png':type.logoUrl">
+                                        <img class="avatar" :src="type.logoUrl==null?'/static/imgs/default-note.png':type.logoUrl" onclick="chooseNoteAvatar(this)" :data-type-id="type.id">
+                                        <input type="file" accept="image/*" style="display: none" :data-type-id="type.id" onchange="uploadAvatar(event,this)" :id="type.id">
                                         <h3>{{ type.name }}</h3>
                                     </div>
                                     <div class="card-body">
                                         <ol>
                                             <li v-for="s in type.experiences"><a :href="'/note/'+s.id">{{ s.title }}</a></li>
                                         </ol>
+                                    </div>
+                                    <div class="card-footer" v-if="type.totalCount>6" :data-type-id="type.id" data-col="1" onclick="expand(this)">
+                                        <img src="/static/imgs/down.png">
                                     </div>
                                 </div>
                             </div>
@@ -73,13 +82,17 @@
                             <div class="flow-item" v-for="type in col">
                                 <div class="card">
                                     <div class="card-title">
-                                        <img class="avatar" :src="type.logoUrl==null?'/static/imgs/default-note.png':type.logoUrl">
+                                        <img class="avatar" :src="type.logoUrl==null?'/static/imgs/default-note.png':type.logoUrl" onclick="chooseNoteAvatar(this)" :data-type-id="type.id">
+                                        <input type="file" accept="image/*" style="display: none" :data-type-id="type.id" onchange="uploadAvatar(event,this)" :id="type.id">
                                         <h3>{{ type.name }}</h3>
                                     </div>
                                     <div class="card-body">
                                         <ol>
                                             <li v-for="s in type.experiences"><a :href="'/note/'+s.id">{{ s.title }}</a></li>
                                         </ol>
+                                    </div>
+                                    <div class="card-footer" v-if="type.totalCount>6" :data-type-id="type.id" data-col="2" onclick="expand(this)">
+                                        <img src="/static/imgs/down.png">
                                     </div>
                                 </div>
                             </div>
@@ -90,7 +103,8 @@
                             <div class="flow-item" v-for="type in col">
                                 <div class="card">
                                     <div class="card-title">
-                                        <img class="avatar" :src="type.logoUrl==null?'/static/imgs/default-note.png':type.logoUrl">
+                                        <img class="avatar" :src="type.logoUrl==null?'/static/imgs/default-note.png':type.logoUrl" onclick="chooseNoteAvatar(this)" :data-type-id="type.id">
+                                        <input type="file" accept="image/*" style="display: none" :data-type-id="type.id" onchange="uploadAvatar(event,this)" :id="type.id">
                                         <h3>{{ type.name }}</h3>
                                     </div>
                                     <div class="card-body">
@@ -98,15 +112,47 @@
                                             <li v-for="s in type.experiences"><a :href="'/note/'+s.id">{{ s.title }}</a></li>
                                         </ol>
                                     </div>
+                                    <div class="card-footer" v-if="type.totalCount>6" :data-type-id="type.id" data-col="3" onclick="expand(this)">
+                                        <img src="/static/imgs/down.png">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card">
-                
+            <div class="cartoon">
+                <img src="./static/imgs/doctor.png" class="book-header-image">
+                <h4 class="message">見てごらん</h4>
             </div>
+            <div class="book-cards card" id="book" style="margin-top: -10px">
+                <div class="drawer">
+                    <div class="drawer-navigation" id="left-navigation">
+                        <ul>
+                            <li v-for="book in books" onclick="setCurrentBook(this)" :data-book-id="book.id"><a>{{ book.bookName }}</a></li>
+                        </ul>
+                    </div>
+                    <div class="drawer-right">
+                        <div class="header">
+                            <div class="toggle-menu">
+                                <img src="./static/imgs/drawer.png" width="20px" height="20px" data-drawer-navigation="left-navigation" onclick="toggleDrawer(this)" data-open="true">
+                            </div>
+                            <h4>{{ currentShown.bookName }}</h4>
+                        </div>
+                        <div class="drawer-body">
+                            <span>{{ currentShown.bookDescription }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--div class="note-card-marker">
+            <img src="./static/imgs/mzh.png">
+            <h3>何を見ていますか</h3>
+        </div-->
+        <div class="cartoon">
+            <img src="./static/imgs/mzh.png" class="book-header-image">
+            <h4 class="message">何を見ていますか</h4>
         </div>
         <div class="footer">
             <div class="box">
@@ -118,10 +164,40 @@
             <div class="box">
                 <p><s>友情</s>亲情链接</p>
                 <a href="https://github.com/gitofleonardo">我的Github</a>
+                <a href="https://space.bilibili.com/447983453">哔哩哔哩</a>
                 <a href="tencent://message/?uin=971840889&Site=http://huangchengxi.cn">QQ聊天</a>
                 <a href="mailto:971840889@qq.com">QQ邮箱</a>
                 <a href="mailto:xixihuangxixi@outlook.com">outlook邮箱</a>
             </div>
         </div>
+    <div class="dialog" id="login-dialog">
+        <div class="header">
+            <h2 class="dialog-title">登录</h2>
+            <div class="dialog-dismiss" data-dismiss="login-dialog" onclick="dismissDialog(this)"><img src="./static/imgs/close.png" width="20px" height="20px"></div>
+        </div>
+        <div class="body">
+            <form class="form" action="/login-processing" method="post">
+                <input type="text" placeholder="邮箱" name="username">
+                <input type="password" placeholder="密码" name="password">
+                <a onclick="openSignOn()">没有账号？注册一个</a>
+                <button type="submit">登录</button>
+            </form>
+        </div>
+    </div>
+    <div class="dialog" id="signon-dialog">
+        <div class="header">
+            <h2 class="dialog-title">注册一个</h2>
+            <div class="dialog-dismiss" data-dismiss="signon-dialog" onclick="dismissDialog(this)"><img src="./static/imgs/close.png" width="20px" height="20px"></div>
+        </div>
+        <div class="body">
+            <form class="form" onsubmit="return onSubmitSignOn()">
+                <input type="text" placeholder="邮箱" id="email">
+                <input type="password" placeholder="请输入密码" id="password">
+                <input type="password" placeholder="请重复密码" id="passwordRepeat">
+                <input type="text" placeholder="邀请码" id="validate">
+                <button type="submit">注册</button>
+            </form>
+        </div>
+    </div>
     </body>
 </html>

@@ -12,7 +12,7 @@
 /*    */   implements HandlerInterceptor {
 /*    */   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 /* 14 */     System.out.println("enter admin interceptor");
-/* 15 */     System.out.println("request utl" + request.getRequestURI());
+/* 15 */     System.out.println("request url" + request.getRequestURI());
 /* 16 */     System.out.println("rquest method" + request.getMethod());
 /* 17 */     Collection<? extends GrantedAuthority> auths = (Collection<? extends GrantedAuthority>)request.getSession().getAttribute("auths");
 /* 18 */     if (auths == null || !checkAuths(auths)) {

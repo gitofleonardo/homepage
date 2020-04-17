@@ -9,13 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.websocket.server.PathParam;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Controller
 public class NoteController {
@@ -23,6 +28,54 @@ public class NoteController {
     ExpRepository expRepository;
     @Autowired
     ExpTypeRepository expTypeRepository;
+    private static final String path="C:/server-images/";
+
+    @RequestMapping("/avatar")
+    @ResponseBody
+    public String avatar(@PathParam("id") String id, @RequestParam("avatar") MultipartFile file){
+        SharedExperienceType type=expTypeRepository.findById(Long.parseLong(id)).get();
+        Date d=new Date();
+        String filename=file.getOriginalFilename();
+        String suffix=filename.substring(filename.lastIndexOf("."));
+        String name=path+type.getId()+ d.getTime() +""+suffix;
+        System.out.println(name);
+        FileOutputStream fos=null;
+        try{
+            fos=new FileOutputStream(name);
+            fos.write(file.getBytes());
+            String origin=type.getLogoUrl();
+            type.setLogoUrl("/img/"+type.getId()+d.getTime()+""+suffix);
+            expTypeRepository.save(type);
+            //delete the origin
+            if (origin!=null){
+                String local=getLocalPath(origin);
+                if (local!=null){
+                    System.out.println("local path:"+local);
+                    File f=new File(local);
+                    if (f.exists()){
+                        f.delete();
+                    }
+                }
+            }
+            return "{\"success\":true}";
+        }catch (Exception e){
+            return "{\"success\":false}";
+        }finally {
+            try{
+                fos.close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+    public static String getLocalPath(String url){
+        Pattern p=Pattern.compile("^/img/(.+)$");
+        Matcher m=p.matcher(url);
+        if (m.find()){
+            return path+m.group(1);
+        }
+        return null;
+    }
     @RequestMapping("/notes")
     @ResponseBody
     public List<Experiences> notes(){

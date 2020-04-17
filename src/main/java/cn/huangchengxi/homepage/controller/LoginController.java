@@ -14,10 +14,12 @@ import cn.huangchengxi.homepage.entity.*;
 /*    */ import com.alibaba.fastjson.JSON;
 /*    */ import com.alibaba.fastjson.JSONObject;
 /*    */ import com.fasterxml.jackson.databind.ObjectMapper;
-/*    */ import java.util.Arrays;
+/*    */ import java.io.IOException;
+import java.util.Arrays;
 /*    */ import java.util.Collection;
 import java.util.List;
-/*    */ import javax.servlet.http.HttpSession;
+/*    */ import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 /*    */ import javax.transaction.Transactional;
 /*    */ import org.springframework.beans.factory.annotation.Autowired;
 /*    */ import org.springframework.security.core.GrantedAuthority;
@@ -44,7 +46,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
            ExpRepository expRepository;
 
            @Action(name = "首页拦截")
-/*    */   @RequestMapping({"/index"})
+/*    */   @RequestMapping({"/index","/login"})
 /*    */   public String index(Model model, HttpSession session) {
 /* 41 */     List<RecommendedBook> books = this.bookRepository.findAll();
                 List<SharedExperienceType> types=expTypeRepository.findAll();
@@ -54,7 +56,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 /*    */     } else {
 /* 45 */       model.addAttribute("login", Boolean.TRUE);
 String name=(String)session.getAttribute("username");
-model.addAttribute("username",name);
+User user=repository.findByUsername(name);
+UserProperties p=userPropertiesRepository.findByUser(user);
+model.addAttribute("account",name);
+model.addAttribute("username",p.getNickname()==null?name:p.getNickname());
 /*    */     }
                 model.addAttribute("exps",exps);
             model.addAttribute("types",types);
@@ -78,10 +83,12 @@ model.addAttribute("username",name);
 /*    */   public String i(Model model, HttpSession session) {
 /* 52 */     return index(model, session);
 /*    */   }
-/*    */   @RequestMapping({"/login"})
-/*    */   public String login(Model model, HttpSession session) {
-/* 56 */     return "login";
-/*    */   }
+/*
+/*    */   //@RequestMapping({"/login"})
+/*    */   //public String login(Model model, HttpSession session, HttpServletResponse response) throws IOException {
+    //response.sendRedirect("/index");
+/* 56 */     //return "/index";
+/*    */   //}
 /*    */   @RequestMapping({"/signon"})
 /*    */   public String signon(Model model) {
 /* 60 */     return "signon";

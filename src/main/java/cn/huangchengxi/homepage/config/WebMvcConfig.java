@@ -28,14 +28,14 @@
 /* 28 */     registry.addResourceHandler("/pages/**").addResourceLocations("classpath:/templates/pages/");
 /* 29 */     registry.addResourceHandler("/xujinhua/**").addResourceLocations("classpath:/templates/xujinhua/");
 /* 30 */     registry.addResourceHandler("/dengyanqing/**").addResourceLocations("classpath:/templates/dengyanqing/");
-/* 31 */     registry.addResourceHandler("/imageResource/**").addResourceLocations("file:C:/server-images-protected");
-/* 32 */     registry.addResourceHandler("/img/**").addResourceLocations("file:C:/server-images");
+/* 31 */     registry.addResourceHandler("/imageResource/**").addResourceLocations("file:C:/server-images-protected/");
+/* 32 */     registry.addResourceHandler("/img/**").addResourceLocations("file:C:/server-images/");
 /*    */   }
 /*    */ 
 /*    */   
 /*    */   public void addInterceptors(InterceptorRegistry registry) {
-/* 37 */     registry.addInterceptor((HandlerInterceptor)this.adminResInterceptor).addPathPatterns("/imageResource/**", "/bookManage/**", "/bookManage","/modification","/modification/**","/postNote","/publication");
-/* 38 */     registry.addInterceptor((HandlerInterceptor)this.loginResInterceptor).addPathPatterns("/center", "/img/**", "/infos", "/modifyinfos", "/modifyinfos-processing");
+/* 37 */     registry.addInterceptor((HandlerInterceptor)this.adminResInterceptor).addPathPatterns("/imageResource/**", "/bookManage/**", "/bookManage","/modification","/modification/**","/postNote","/publication","/avatar");
+/* 38 */     registry.addInterceptor((HandlerInterceptor)this.loginResInterceptor).addPathPatterns("/center", "/infos", "/modifyinfos", "/modifyinfos-processing");
 /*    */   }
 /*    */ }
 

@@ -1,0 +1,47 @@
+div.dialog{
+    width: 40%;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    margin-left: -20%;
+    margin-top: 25%;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    z-index: 100;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px grey;
+    overflow: hidden;
+}
+div.dialog .header{
+    margin: 0;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+div.dialog .header .dialog-title{
+    color: grey;
+    display: inline-block;
+}
+div.dialog .header .dialog-dismiss{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    position: absolute;
+    margin-top: -10px;
+    top: 50%;
+    right: 40px;
+    transition-duration: 500ms;
+}
+div.dialog .header .dialog-dismiss:hover{
+    transform: rotate(180deg);
+}
+div.dialog .body{
+    width: 100%;
+    padding: 0;
+}

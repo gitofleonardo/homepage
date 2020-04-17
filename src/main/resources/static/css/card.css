@@ -1,5 +1,5 @@
 div.cards{
-    background-color: transparent;
+    padding-bottom: 20px;
     margin-top: -2%;
     width: 100%;
     display: flex;
@@ -8,15 +8,39 @@ div.cards{
     justify-content: center;
 }
 div.card{
-    margin-top: 20px;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 96%;
     height:auto;
-    box-shadow: 2px 2px 10px rgb(233, 233, 233);
+    box-shadow: 2px 2px 10px rgb(225, 225, 225);
     background-color: white;
     border-radius: 5px;
     transition-duration: 500ms;
     -moz-user-select: none;
     -webkit-user-select: none;
+}
+div.card .card-footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    margin-bottom: 10px;
+}
+div.card .card-footer img{
+    width: 20px;
+    height: 20px;
+}
+div.card .card-footer a{
+    color: grey;
+    text-decoration: none;
+}
+div.card .card-footer p{
+    color: grey;
 }
 div.card .card-title{
     width: 100%;
@@ -53,6 +77,7 @@ div.card .card-title img.avatar{
     overflow: hidden;
 }
 .note-card{
+    position: relative;
     padding: 10px;
     margin-left: 20px;
     margin-right: 20px;
@@ -87,4 +112,23 @@ div.flow-layout div.flow-items div.flow-item{
 }
 .item-container{
     width: 100%;
+}
+.book-cards{
+    background-color: transparent;
+    overflow: hidden;
+    margin-top: -10px;
+    position: relative;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.book-card{
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.book-card p{
+    font-size: 12px;
+}
+.book-card a{
+    font-size: 12px;
 }
