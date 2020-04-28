@@ -16,12 +16,12 @@
 }
 .drawer .drawer-navigation{
     position: relative;
-    width: 200px;
+    width: 250px;
     height: 500px;
     transition-duration: 500ms;
     overflow-x: hidden;
     overflow-y: auto;
-    background-color: skyblue;
+    background-color: lightseagreen;
 }
 .drawer .drawer-navigation li{
     word-break: break-all;
@@ -35,6 +35,10 @@
     height:auto;
     transition-duration: 500ms;
     color: white;
+}
+.drawer .drawer-navigation li a{
+    margin-left: 10px;
+    margin-right: 10px;
 }
 .drawer .drawer-navigation ul{
     padding: 0;
@@ -53,7 +57,8 @@
     display: none;
 }
 .drawer .drawer-navigation li:hover{
-    background-color: #43ceff;
+    background-color: white;
+    color: grey;
 }
 .drawer .drawer-navigation li.active{
     background-color: #43ceff;
@@ -82,11 +87,11 @@
     background-color: rgb(230, 230, 230);
 }
 .drawer .drawer-right{
-    width: 80%;
+    width: 100%;
     background-color: white;
 }
 .drawer .drawer-body{
-    width:100%;
+    width:auto;
     height: 100%;
     margin: 10px;
 }

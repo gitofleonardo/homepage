@@ -17,8 +17,6 @@
 /*    */   AdminResInterceptor adminResInterceptor;
 /*    */   
 /*    */   public void addViewControllers(ViewControllerRegistry registry) {
-/* 20 */     registry.addViewController("/dengyanqing").setViewName("/dengyanqing/index");
-/* 21 */     registry.addViewController("/xujinhua").setViewName("/xujinhua/index");
 /* 22 */     registry.addViewController("/bookManage/postBook").setViewName("postBook");
 /* 23 */     registry.addViewController("/bookManage").setViewName("manageBook");
 /*    */   } @Autowired

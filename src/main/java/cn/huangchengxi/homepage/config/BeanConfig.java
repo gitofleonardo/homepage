@@ -18,6 +18,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 /*    */ import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 
 /*    */
 /*    */ @Configuration
@@ -83,6 +84,12 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 /*    */   public ObjectMapper objectMapper() {
 /* 77 */     return new ObjectMapper();
 /*    */   }
+@Bean
+    public SecurityFireWall firewall(){
+    SecurityFireWall fireWall=new SecurityFireWall();
+    fireWall.setThisAllowUrlEncodeDoubleSlash(true);
+    return fireWall;
+}
 /*    */ }
 
 

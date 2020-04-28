@@ -7,6 +7,6 @@ function toggleDrawer(menu){
         nav.style.width="0px"
     }else{
         menu.setAttribute("data-open","true")
-        nav.style.width="200px"
+        nav.style.width="250px"
     }
 }

@@ -26,6 +26,8 @@
 /*    */   FilterSecurityMetaDatasource filterSecurityMetaDatasource;
 /*    */   @Autowired
 /*    */ MyAccessDecisionManager myAccessDecisionManager;
+@Autowired
+SecurityFireWall fireWall;
 /*    */   
 /*    */   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 /* 31 */     auth.userDetailsService(this.mUserDetailsService).passwordEncoder((PasswordEncoder)new BCryptPasswordEncoder());
@@ -50,6 +52,7 @@
 /*    */   
 /*    */   public void configure(WebSecurity web) throws Exception {
 /* 52 */     web.ignoring().antMatchers("/", "/index", "/login", "/login-processing", "/error");
+web.httpFirewall(fireWall);
 /*    */   }
 /*    */ }
 

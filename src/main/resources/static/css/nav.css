@@ -98,6 +98,7 @@ div.nav .menu div.toggle-menu{
 div.nav .menu div.toggle-menu ul{
     top: 100%;
     left: 0;
+    margin-left: -100%;
     position: absolute;
     padding: 0;
     display:none;
@@ -110,7 +111,17 @@ div.nav .menu div.toggle-menu ul{
     transition-duration: 500ms;
     width:10rem;
     height:auto;
-    overflow: hidden;
+    overflow: visible;
+}
+div.nav .menu div.toggle-menu ul:before{
+    position: absolute;
+    top: -5px;
+    content:"";
+    transform: rotate(45deg);
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    z-index: -1;
 }
 div.nav .menu div.toggle-menu li.toggle-title{
     border-bottom:5px solid transparent;
