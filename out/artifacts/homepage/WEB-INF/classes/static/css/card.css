@@ -1,0 +1,134 @@
+div.cards{
+    padding-bottom: 20px;
+    margin-top: -2%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+div.card{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 96%;
+    height:auto;
+    box-shadow: 2px 2px 10px rgb(225, 225, 225);
+    background-color: white;
+    border-radius: 5px;
+    transition-duration: 500ms;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+div.card .card-footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    margin-bottom: 10px;
+}
+div.card .card-footer img{
+    width: 20px;
+    height: 20px;
+}
+div.card .card-footer a{
+    color: grey;
+    text-decoration: none;
+}
+div.card .card-footer p{
+    color: grey;
+}
+div.card .card-title{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+div.card .card-body{
+    padding: 10px;
+}
+div.card .card-body ol{
+    padding-left: 100px;
+    padding-bottom: 10px;
+    border-left:5px solid rgb(241, 241, 241);
+}
+div.card .card-body ol a{
+    color: grey;
+    text-decoration: none;
+}
+div.card .card-body ol li{
+    font-size: 12px;
+    color: grey;
+    margin: 10px;
+}
+div.card .card-title h3{
+    color: grey;
+}
+div.card .card-title img.avatar{
+    margin: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.note-card{
+    position: relative;
+    padding: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+div.cards div.card:hover{
+    box-shadow: 2px 2px 10px rgb(214, 214, 214);
+}
+div.flow-layout{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items:flex-start;
+    justify-content: flex-start;
+}
+div.flow-layout div.flow-items{
+    margin: 5px;
+    width: 33%;
+    height: auto;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+div.flow-layout div.flow-items div.flow-item{
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+.item-card{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.item-container{
+    width: 100%;
+}
+.book-cards{
+    background-color: transparent;
+    overflow: hidden;
+    margin-top: -10px;
+    position: relative;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.book-card{
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.book-card p{
+    font-size: 12px;
+}
+.book-card a{
+    font-size: 12px;
+}

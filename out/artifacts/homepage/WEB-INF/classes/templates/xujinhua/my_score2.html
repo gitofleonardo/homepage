@@ -1,0 +1,220 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <title>中南大学学生个人简介 徐金华 个人成绩</title>
+    <link rel="stylesheet" type="text/css" href="CSS/publicCSS.css">
+    <script>
+        var flag=true;
+    </script>
+    <script type="text/javascript" src="JS/refleshTime.js"></script>
+    <script type="text/javascript" src="JS/controlMusic.js"></script>
+    <style>
+        .tabtop13 {
+	        margin-top: 13px;
+        }
+        .font-center{ text-align:center}
+        .font-left{text-align: left}
+        .btbg{background:#e9faff !important;}
+        .titfont {font-family: 微软雅黑;
+	        font-size: 16px;
+	        font-weight: bold;
+	        color: #255e95;
+	        background: no-repeat 15px center;
+	        background-color:#e9faff;
+        }
+        .score-color{
+            background-color: ivory;
+        }
+    </style>
+</head>
+
+<body class="bgcolor">
+    <div id="menu">
+        <div class="item" style="width: 70px;"><a href="作业三0902170105徐金华.html" onclick="getCurrentSecond(this)">主页</a></div>
+        <div class="item" style="width: 140px;"><a href="my_score.html" onclick="getCurrentSecond(this)">个人成绩</a></div>
+        <div class="item" style="width: 70px;"><a href="my_detail.html" onclick="getCurrentSecond(this)">关于</a></div>
+        <div class="headline"><b>中南大学学生个人成绩</b></div>
+        <div class="YearMouthDay" id="YearMouthDay"></div>
+        <div class="HourMinuteSecond">
+            <from>
+                当前时间：<input id="HourMinuteSecond" type="text" style="width: 55px;" disabled>
+            </from>
+        </div>
+        <div class="musicDiv">
+            <select id="musicList" style="width:100px;margin:3px;">
+                <option value="0" onclick="changeMusic(value)">从你的全世界路过</option>
+                <option value="1" onclick="changeMusic(value)">illusionary Daytime</option>
+                <option value="2" onclick="changeMusic(value)">告白之夜</option>
+                <option value="3" onclick="changeMusic(value)">银魂</option>
+                <option value="4" onclick="changeMusic(value)">Try</option>
+                <option value="5" onclick="changeMusic(value)">稳稳的幸福</option>
+                <option value="6" onclick="changeMusic(value)">夏天的风</option>
+                <option value="7" onclick="changeMusic(value)">雨前茶</option>
+            </select>
+            <p id="current" style="font-size: 15px;"></p>
+            <progress id="timeProgress" class="progress" value="0" max="100" onclick="changeTimeProgress(event)"></progress>
+            <p id="total" style="font-size: 15px;"></p>
+            <img id="prev" class="musicButton" src="Images/shangyishou.png">
+            <img id="audio" class="musicButton" src="Images/zanting.png">
+            <img id="next" class="musicButton" src="Images/xiayishou.png">
+            <img id="repeat" class="musicButton" src="Images/chongbo.png"  title="重播">
+            <img id="mute" class="musicButton" src="Images/yinliang.png" onmousemove="flag=false;" onmouseout="flag=true;">
+        </div>
+        <div id="volumeDiv" class="volumeDiv" onmousemove="flag=false;" onmouseout="flag=true;">
+            <img id="makeMute" class="makeMute" src="Images/yinliang.png">
+            <progress id="volumeProgress" class="progress" value="0" max="100" onclick="changeVolumeProgress(event)"></progress>
+            <p id="volume" style="width: 20px;text-align: center;"></p>
+        </div>
+    </div>
+    <div class="top_blank"></div>
+    <button id="musicNumber" hidden="hidden">0</button>
+    <audio autoplay style="visibility: hidden;" id="media" src="Musics/从你的全世界路过.mp3" type="audio/mpeg"></audio>
+    <script>
+        initialize();
+        controlStatus();
+    </script>
+    <div>
+        <table width="90%" border="0" cellspacing="1" cellpadding="4" bgcolor="#cccccc" class="tabtop13" align="center">
+            <tr>
+                <td width="5%" class="btbg font-center titfont">序号</td>
+                <td width="10%" class="btbg font-center titfont">初修学期</td>
+                <td width="10%" class="btbg font-center titfont">获得学期</td>
+                <td width="30%" class="btbg font-center titfont">课程</td>
+                <td width="5%" class="btbg font-center titfont">成绩</td>
+                <td width="5%" class="btbg font-center titfont">学分</td>
+                <td width="7%" class="btbg font-center titfont">课程属性</td>
+                <td width="9%" class="btbg font-center titfont">课程性质</td>
+                <td width="9%" class="btbg font-center titfont">获得方式</td>
+            </tr>
+            <tr>
+                <td width="5%" class="font-center score-color">1</td>
+                <td width="10%" class="font-center score-color">2018-2019-1</td>
+                <td width="10%" class="font-center score-color">2018-2019-1</td>
+                <td width="30%" class="font-left score-color">[090204X10]离散数学</td>
+                <td width="5%" class="font-center score-color">66</td>
+                <td width="5%" class="font-center score-color">3</td>
+                <td width="7%" class="font-center score-color">必修</td>
+                <td width="9%" class="font-center score-color">专业核心课</td>
+                <td width="9%" class="font-center score-color">正常考试</td>
+            </tr>
+            <tr>
+                <td width="5%" class="font-center score-color">2</td>
+                <td width="10%" class="font-center score-color">2018-2019-1</td>
+                <td width="10%" class="font-center score-color">2018-2019-1</td>
+                <td width="30%" class="font-left score-color">[090205X10]数据结构</td>
+                <td width="5%" class="font-center score-color">91</td>
+                <td width="5%" class="font-center score-color">3.5</td>
+                <td width="7%" class="font-center score-color">必修</td>
+                <td width="9%" class="font-center score-color">专业核心课</td>
+                <td width="9%" class="font-center score-color">正常考试</td>
+            </tr>
+            <tr>
+                <td width="5%" class="font-center score-color">3</td>
+                <td width="10%" class="font-center score-color">2018-2019-1</td>
+                <td width="10%" class="font-center score-color">2018-2019-1</td>
+                <td width="30%" class="font-left score-color">[090206X11]程序设计实践（C++和数据结构）</td>
+                <td width="5%" class="font-center score-color">良</td>
+                <td width="5%" class="font-center score-color">2</td>
+                <td width="7%" class="font-center score-color">必修</td>
+                <td width="9%" class="font-center score-color">集中实践环节</td>
+                <td width="9%" class="font-center score-color">正常考试</td>
+            </tr>
+            <tr>
+                <td width="5%" class="font-center score-color">4</td>
+                <td width="10%" class="font-center score-color">2018-2019-1</td>
+                <td width="10%" class="font-center score-color">2018-2019-1</td>
+                <td width="30%" class="font-left score-color">[090207Z10]JAVA语言与系统设计</td>
+                <td width="5%" class="font-center score-color">87</td>
+                <td width="5%" class="font-center score-color">3</td>
+                <td width="7%" class="font-center score-color">必修</td>
+                <td width="9%" class="font-center score-color">专业核心课</td>
+                <td width="9%" class="font-center score-color">正常考试</td>
+            </tr>
+            <tr>
+                <td width="5%" class="font-center score-color">5</td>
+                <td width="10%" class="font-center score-color">2018-2019-1</td>
+                <td width="10%" class="font-center score-color">2018-2019-1</td>
+                <td width="30%" class="font-left score-color">[090222Z10]计算机组成原理与汇编</td>
+                <td width="5%" class="font-center score-color">85</td>
+                <td width="5%" class="font-center score-color">4</td>
+                <td width="7%" class="font-center score-color">必修</td>
+                <td width="9%" class="font-center score-color">专业选修课</td>
+                <td width="9%" class="font-center score-color">正常考试</td>
+            </tr>
+            <tr>
+                <td width="5%" class="font-center score-color">6</td>
+                <td width="10%" class="font-center score-color">2018-2019-1</td>
+                <td width="10%" class="font-center score-color">2018-2019-1</td>
+                <td width="30%" class="font-left score-color">[130201X10]科学计算与数学建模</td>
+                <td width="5%" class="font-center score-color">77</td>
+                <td width="5%" class="font-center score-color">4</td>
+                <td width="7%" class="font-center score-color">选修</td>
+                <td width="9%" class="font-center score-color">公共基础课</td>
+                <td width="9%" class="font-center score-color">正常考试</td>
+            </tr>
+            <tr>
+                <td width="5%" class="font-center score-color">7</td>
+                <td width="10%" class="font-center score-color">2018-2019-1</td>
+                <td width="10%" class="font-center score-color">2018-2019-1</td>
+                <td width="30%" class="font-left score-color">[130712X10]概率论与数理统计</td>
+                <td width="5%" class="font-center score-color">68</td>
+                <td width="5%" class="font-center score-color">3.5</td>
+                <td width="7%" class="font-center score-color">必修</td>
+                <td width="9%" class="font-center score-color">公共基础课</td>
+                <td width="9%" class="font-center score-color">正常考试</td>
+            </tr>
+            <tr>
+                <td width="5%" class="font-center score-color">8</td>
+                <td width="10%" class="font-center score-color">2018-2019-1</td>
+                <td width="10%" class="font-center score-color">2018-2019-1</td>
+                <td width="30%" class="font-left score-color">[180532T10]高级英语系列选修</td>
+                <td width="5%" class="font-center score-color">84</td>
+                <td width="5%" class="font-center score-color">2</td>
+                <td width="7%" class="font-center score-color">选修</td>
+                <td width="9%" class="font-center score-color">公共基础课</td>
+                <td width="9%" class="font-center score-color">正常考试</td>
+            </tr>
+            <tr>
+                <td width="5%" class="font-center score-color">9</td>
+                <td width="10%" class="font-center score-color">2018-2019-1</td>
+                <td width="10%" class="font-center score-color">2018-2019-1</td>
+                <td width="30%" class="font-left score-color">[210201T10]中国近现代史纲要</td>
+                <td width="5%" class="font-center score-color">82</td>
+                <td width="5%" class="font-center score-color">2</td>
+                <td width="7%" class="font-center score-color">必修</td>
+                <td width="9%" class="font-center score-color">思政类</td>
+                <td width="9%" class="font-center score-color">正常考试</td>
+            </tr>
+            <tr>
+                <td width="5%" class="font-center score-color">10</td>
+                <td width="10%" class="font-center score-color">2018-2019-1</td>
+                <td width="10%" class="font-center score-color">2018-2019-1</td>
+                <td width="30%" class="font-left score-color">[4-19]数学建模方法引论</td>
+                <td width="5%" class="font-center score-color">72</td>
+                <td width="5%" class="font-center score-color">2</td>
+                <td width="7%" class="font-center score-color">任选</td>
+                <td width="9%" class="font-center score-color">文化素质类</td>
+                <td width="9%" class="font-center score-color">正常考试</td>
+            </tr>
+            <tr>
+                <td width="5%" class="font-center score-color">11</td>
+                <td width="10%" class="font-center score-color">2018-2019-1</td>
+                <td width="10%" class="font-center score-color">2018-2019-1</td>
+                <td width="30%" class="font-left score-color">[660001T30]体育（三）</td>
+                <td width="5%" class="font-center score-color">85</td>
+                <td width="5%" class="font-center score-color">1</td>
+                <td width="7%" class="font-center score-color">必修</td>
+                <td width="9%" class="font-center score-color">军体类</td>
+                <td width="9%" class="font-center score-color">正常考试</td>
+            </tr>
+        </table>
+    </div>
+    <div style="text-align: center;float: left;font-size: 15px;width: 100%;font-family: 微软雅黑;margin-top: 20px;margin-bottom: 10px;">
+        共1条 2/2&ensp;
+        <span><button type="button"><a href="my_score.html" onclick="getCurrentSecond(this)">首页</a></button></span>
+        <span><button type="button"><a href="my_score.html" onclick="getCurrentSecond(this)">上一页</a></button></span> 
+        <span><button type="button" disabled="true">下一页</button></span> 
+        <span><button type="button" disabled="true">尾页</button></span>
+    </div>
+</body>
+</html>

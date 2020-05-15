@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8">
+        <meta name="description" content="当然是两个人的了">
+        <meta name="girl" content="邓燕清">
+        <meta name="boy" content="黄承喜">
+        <title>今天是第几天了呢</title>
+        <script src="/static/javascript/jquery-3.5.0.min.js"></script>
+        <script src="/static/javascript/vue.min.js"></script>
+        <script src="/static/javascript/rememberme.js"></script>
+        <script src="/static/javascript/danmu.js"></script>
+        <script src="/static/javascript/rem-dialog.js"></script>
+        <script src="/static/javascript/day.js"></script>
+        <link href="/static/css/rememberme.css" rel="stylesheet">
+        <link href="/static/css/danmu.css" rel="stylesheet">
+        <link href="/static/css/rem-dialog.css" rel="stylesheet">
+        <link href="/static/css/day.css" rel="stylesheet">
+    </head>
+    <body>
+        <img src="/static/imgs/cloud1.png" class="cloud cloud1">
+        <img src="/static/imgs/cloud2.png" class="cloud cloud2">
+        <img src="/static/imgs/cloud3.png" class="cloud cloud3">
+        <img src="/static/imgs/sun1.png" class="cloud sun">
+        <div class="danmu-container">
+            <div class="danmu" id="main-danmu"></div>
+        </div>
+        <div class="tree" onclick="showDialog(this)" data-show-dialog="main-dialog">
+            <img src="/static/imgs/tree.png">
+        </div>
+        <div class="indicator">
+            <img src="/static/imgs/mark.png">
+        </div>
+        <div class="send-danmu">
+            <input id="danmu-content" placeholder="发送点什么吧">
+            <button onclick="sendDanmu()">发送</button>
+        </div>
+        <div class="dialog" id="main-dialog">
+            <div class="dialog-content">
+                <div class="dialog-title"><a>在一起一共</a></div>
+                <div class="dialog-close" onclick="disposeDialog(this)" data-dispose="main-dialog">
+                    <img src="/static/imgs/rem-close.png">
+                </div>
+                <div class="dialog-body">
+                    <div class="day" id="day">
+                        <img v-for="img in imgs" v-bind:src="img.src">
+                        <img src="/static/imgs/day.png" class="day-char">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

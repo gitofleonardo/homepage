@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=0.5,maximum-scale=2.0,user-scalable=yes">
+    <title>修改信息</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <style>
+        .main-container{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            margin: 30px;
+        }
+    </style>
+    <script th:inline="javascript">
+        $(document).ready(function(){
+            var xh=new XMLHttpRequest();
+            xh.open("GET","/countries?size=1000",true)
+            xh.onreadystatechange=function () {
+                if (xh.readyState==4){
+                    if (xh.status==200){
+                        var text=xh.responseText
+                        var json=JSON.parse(text)
+                        var countries=json["_embedded"]["countries"]
+                        var size=json["page"]["totalElements"]
+                        var selectCountry=document.getElementById("country")
+                        var countryId=[[${countryId}]]
+                        for (var i=0;i<size;i++){
+                            var country=countries[i]
+                            var id=country["id"]
+                            var cname=country["cname"]
+                            var option=document.createElement("option")
+                            option.value=id
+                            option.innerText=cname
+                            if (id==countryId) {
+                                option.selected=true
+                            }
+                            selectCountry.appendChild(option)
+                        }
+                    }
+                }
+            }
+            xh.send("")
+        })
+        function submitInfos() {
+            var nickname=document.getElementById("nickname").value
+            var gender=document.getElementById("gender").value
+            var date=document.getElementById("birthday").value
+            var country=document.getElementById("country").value
+            console.log(nickname)
+            console.log(gender)
+            console.log(date)
+            if (nickname==""){
+                alert("昵称不能为空")
+                return false
+            }
+            var data={}
+            data["nickname"]=nickname
+            data["gender"]=gender
+            data["birthday"]=date
+            data["country"]=country
+            var xh=new XMLHttpRequest()
+            xh.open("POST","/modifyinfos-processing",true)
+            xh.onreadystatechange=function () {
+                if (xh.readyState==4){
+                    if (xh.status==200){
+                        var text=xh.responseText
+                        var obj=JSON.parse(text)
+                        if (obj["success"]==true){
+                            alert("提交成功")
+                            return false
+                        }else{
+                            alert("提交失败：未知错误")
+                        }
+                    }else{
+                        alert("提交失败,身份可能已经过期")
+                    }
+                }
+            }
+            xh.send(JSON.stringify(data))
+            return false;
+        }
+    </script>
+</head>
+<body>
+<div class="main-container">
+    <form class="form-horizontal" role="form" onsubmit="return submitInfos()">
+        <div class="form-group">
+            <label for="nickname">昵称</label>
+            <input class="form-control" id="nickname" th:value="${nickname}" type="text">
+        </div>
+        <div class="form-group">
+            <label for="gender">性别</label>
+            <select class="form-control" id="gender">
+                <option value="0" th:selected="${gender==0}">未设置</option>
+                <option value="1" th:selected="${gender==1}">男</option>
+                <option value="2" th:selected="${gender==2}">女</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="birthday">生日</label>
+            <input id="birthday" type="date" class="form-control" th:value="${birthday}">
+        </div>
+        <div class="form-group">
+            <label for="country">国家</label>
+            <select id="country" class="form-control">
+                <option value="null">请选择国家</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-default">提交</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

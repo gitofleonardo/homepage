@@ -1,0 +1,105 @@
+html{
+    width: 100%;
+    height: 100%;
+}
+body{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    position: relative;
+    background-color: pink;
+}
+.tree{
+    background-color: transparent;
+    width: auto;
+    height: auto;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -25%;
+}
+.tree img{
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    width: auto;
+    height: auto;
+}
+.indicator{
+    background-color: transparent;
+    width: 45px;
+    height: 58px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -50px;
+}
+.indicator img{
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+.cloud{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    position: absolute;
+    animation: cloud-animation 1s;
+    top: 10%;
+}
+.cloud.cloud1{
+    left: 10%;
+}
+.cloud.cloud2{
+    left:30%;
+}
+.cloud.cloud3{
+    left:70%;
+}
+.cloud.sun{
+    z-index: -1;
+    left: 15%;
+}
+@keyframes cloud-animation{
+    from{
+        top: -10%;
+    }
+    to{
+        top:10%;
+    }
+}
+.send-danmu{
+    position: absolute;
+    bottom:10px;
+    left:50%;
+    width: 600px;
+    height: 100px;
+    background-color: transparent;
+    margin-left: -250px;
+    display: block;
+}
+.send-danmu input{
+    padding-left: 20px;
+    background-image: url("/static/imgs/input-bg.png");
+    background-repeat: round;
+    background-color: transparent;
+    width: 400px;
+    height:50px;
+    color:black;
+    outline: none;
+    border: none;
+    font-size: large;
+}
+.send-danmu button{
+    width:100px;
+    height:40px;
+    color:white;
+    outline:none;
+    border:none;
+    background-color:transparent;
+    background-image: url("/static/imgs/button-bg.png");
+    background-repeat: round;
+}

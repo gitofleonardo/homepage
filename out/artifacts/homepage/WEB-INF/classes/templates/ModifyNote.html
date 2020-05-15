@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=0.5,maximum-scale=2.0,user-scalable=yes">
+    <title>编辑</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script th:inline="javascript">
+        function submitNote() {
+            console.log("enter submit")
+            var title=document.getElementById("title").value
+            var type=document.getElementById("type").value
+            var content=document.getElementById("note-content").value
+            if (title==="" || type==-1 || content===""){
+                alert("请检查信息")
+                return false;
+            }
+            var data={}
+            data["type"]=type
+            data["title"]=title
+            data["content"]=content
+            var id=[[${experience==null?null:experience.getId()}]]
+            if (id==null){
+                data["id"]=id
+            }else{
+                data["id"]=null
+            }
+            var xh=new XMLHttpRequest()
+            xh.open("POST","/postNote",true)
+            xh.onreadystatechange=function () {
+                if (xh.readyState===4){
+                    if (xh.status===200){
+                        try {
+                            var text=xh.responseText
+                            var result=JSON.parse(text)
+                            if (result["success"]===true){
+                                alert("提交成功")
+                            }else{
+                                alert("提交失败")
+                            }
+                        }catch (e) {
+                            alert("提交出错,服务器异常")
+                        }
+                    }
+                }
+            }
+            xh.send(JSON.stringify(data))
+            return false;
+        }
+    </script>
+</head>
+<body style="background-color: #4ec8f7">
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu-list">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" style="color: black;">我的主页</a>
+        </div>
+        <div class="collapse navbar-collapse" id="menu-list">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/">主页</a></li>
+                <li><a href="/xujinhua">徐金华的主页</a></li>
+                <li><a href="/dengyanqing">访问邓燕清的主页</a></li>
+                <li><a href="http://www.huangchengxi.cn:8080/Exam/index.jsp">2019Web实验</a></li>
+                <li onclick="contactMe()"><a href="#">QQ联系我</a></li>
+                <li><a href="mailto:971840889@qq.com">给我发送邮件</a></li>
+                <li><a href="/bookManage">书本管理</a></li>
+                <li><a href="/center">个人中心</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="col-sm-12" style="background-color: white;border-radius: 5px">
+        <form role="form" onsubmit="return submitNote()" class="form-horizontal" method="post" style="background-color: white;margin: 30px">
+            <div class="form-group">
+                <input type="text" name="title" id="title" class="form-control" placeholder="标题" th:value="${experience==null?'':experience.getTitle()}">
+            </div>
+            <div class="form-group">
+                <select id="type" class="form-control">
+                    <option value="-1">请选择专栏</option>
+                    <option th:each="type:${types}" th:value="${type.getId()}" th:text="${type.getName()}" th:selected="${experience!=null && type.getId()==experience.getSharedExperienceType().getId()}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <textarea th:text="${experience==null?'':experience.getContent()}" class="form-control" rows="20" id="note-content"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" value="提交" class="btn btn-primary form-control">提交</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

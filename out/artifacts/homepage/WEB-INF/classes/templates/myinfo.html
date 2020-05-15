@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=0.5,maximum-scale=2.0,user-scalable=yes">
+    <title>我的信息</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <style>
+        .main-container{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <div class="form-group">
+        <label for="nickname">昵称 </label>
+        <span id="nickname" th:text="${nickname}"></span>
+    </div>
+    <div class="form-group">
+        <label for="country">国家 </label>
+        <span id="country" th:text="${country}"></span>
+    </div>
+    <div class="form-group">
+        <label for="gender">性别 </label>
+        <span id="gender" th:text="${gender}"></span>
+    </div>
+    <div class="form-group">
+        <label for="birthday">生日 </label>
+        <span th:text="${birthday}" id="birthday"></span>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <title>中南大学学生个人简介 徐金华 简介主页</title>
+    <link rel="stylesheet" type="text/css" href="CSS/publicCSS.css">
+    <script>
+        var flag=true;
+    </script>
+    <script type="text/javascript" src="JS/refleshTime.js"></script>
+    <script type="text/javascript" src="JS/controlMusic.js"></script>
+    <script type="text/javascript" src="JS/作业0902170105徐金华.js"></script>
+    <style>
+        .setbg{
+            background: url(Images/picture1.png);
+            height: 100%;
+        }
+        span{
+            color: coral;
+        }
+        #catalogue{
+            position:fixed;
+            top:58px;
+            right:0;
+        }
+        #myimg{
+            width: 100%;
+            height:300px;
+            display: flex;              /*弹性布局*/
+            align-items: center;        /*垂直居中*/
+            justify-content: center;    /*水平居中*/
+        }
+    </style>
+</head>
+
+<body class="bgcolor">
+    <div id="menu">
+        <div class="item" style="width: 70px;"><a href="作业三0902170105徐金华.html" onclick="getCurrentSecond(this)">主页</a></div>
+        <div class="item" style="width: 140px;"><a href="my_score.html" onclick="getCurrentSecond(this)">个人成绩</a></div>
+        <div class="item" style="width: 70px;"><a href="my_detail.html" onclick="getCurrentSecond(this)">关于</a></div>
+        <div class="headline"><b>中南大学学生个人简介主页</b></div>
+        <div class="YearMouthDay" id="YearMouthDay"></div>
+        <div class="HourMinuteSecond">
+            <from>
+                当前时间：<input id="HourMinuteSecond" type="text" style="width: 55px;" disabled>
+            </from>
+        </div>
+        <div class="musicDiv">
+            <select id="musicList" style="width:100px;margin:3px;">
+                <option value="0" onclick="changeMusic(value)">从你的全世界路过</option>
+                <option value="1" onclick="changeMusic(value)">illusionary Daytime</option>
+                <option value="2" onclick="changeMusic(value)">告白之夜</option>
+                <option value="3" onclick="changeMusic(value)">银魂</option>
+                <option value="4" onclick="changeMusic(value)">Try</option>
+                <option value="5" onclick="changeMusic(value)">稳稳的幸福</option>
+                <option value="6" onclick="changeMusic(value)">夏天的风</option>
+                <option value="7" onclick="changeMusic(value)">雨前茶</option>
+            </select>
+            <p id="current" style="font-size: 15px;"></p>
+            <progress id="timeProgress" class="progress" value="0" max="100" onclick="changeTimeProgress(event)"></progress>
+            <p id="total" style="font-size: 15px;"></p>
+            <img id="prev" class="musicButton" src="Images/shangyishou.png">
+            <img id="audio" class="musicButton" src="Images/zanting.png">
+            <img id="next" class="musicButton" src="Images/xiayishou.png">
+            <img id="repeat" class="musicButton" src="Images/chongbo.png"  title="重播">
+            <img id="mute" class="musicButton" src="Images/yinliang.png" onmousemove="flag=false;" onmouseout="flag=true;">
+        </div>
+    </div>
+    <div class="top_blank"></div>
+    <button id="musicNumber" hidden="hidden">0</button>
+    <audio autoplay style="visibility: hidden;" id="media" src="Musics/从你的全世界路过.mp3" type="audio/mpeg"></audio>
+    <div>
+        <div class="setbg" style="width: 18%;float: left;">
+            <div id="myimg">
+                <img id="img" style="margin: 5px;padding: 5px;background-color: lightskyblue;" src="Images/quanshenzhao.png" 
+                alt="404 Not Founds" width="155" height="218" onmousemove="mousemove(this)" onmouseout="mouseout(this)"/></a>
+            </div>
+            <div style="text-align: center;">
+                <button id="up" style="margin: 5px;" onclick="increase()">增大</button>
+                <button style="margin: 5px;" onclick="decrease()">缩小</button>
+            </div>
+            <div style="width:220px;text-align: left;font-size: 16px;float: left;height: 570px;">
+                <p>姓名：徐金华</p>
+                <p>学号：0902170105</p>
+                <p>专业：计算机科学与技术</p>
+                <p>班级：1701班</p>
+                <p>学院：计算机学院</p>
+                <p>宿舍：升华学生公寓28栋南201</p>
+                <p>入学时间：2017年9月10日</p>
+                <p>邮箱：<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=8cDAyMLBwMLHxcGxgIDfkp6c" style="text-decoration:none;">1193013640@qq.com</a></p>
+            </div>
+        </div>
+
+        <div style="width:72%;float:left">
+            <div style="margin-left: 30px;margin-right: 30px">
+                <h2><a id="c1">基本信息</a></h2>
+                    <p>
+                        <b>姓名</b>&ensp;徐金华&emsp;&emsp;&emsp;
+                        <b>性别</b>&ensp;男&emsp;&emsp;&emsp;
+                        <b>职位</b>&ensp;学生</p>
+                <hr>
+                <h2><a id="c2">联系方式</a></h2>
+                    <p>
+                        <b>电话</b>&ensp;15274821781&emsp;&emsp;&emsp;
+                        <b>Email</b>&ensp;
+                        <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=8cDAyMLBwMLHxcGxgIDfkp6c" style="text-decoration:none;">1193013640@qq.com</a>
+                        </p>
+                <hr>
+                <h2><a id="c3">能力描述</a></h2>
+                    <p>
+                        <b>技术能力</b><br>
+                        熟练掌握<span>C</span>、<span>C++</span>、<span>JAVA</span>和<span>Python</span></p>
+                    <p>
+                        <b>综合能力</b><br>
+                        与人交流良好，主动积极，努力勤奋</p>
+                <hr>
+                <h2><a id="c4">任职情况</a>
+                    <a href="https://baike.baidu.com/item/中南大学家教中心" target="_blank" style="float: right">
+                    <img src="images/zdjj.jpg" alt="404 Not Founds" width="80" height="80"></a></h2>
+                    <p>
+                        现任职于中南大学勤工助学指导中心<a href="https://baike.baidu.com/item/中南大学家教中心" 
+                        target="_blank">家教部</a>(<a href="https://baike.baidu.com/item/中南大学家教中心" target="_blank">中大家教</a>)
+                    </p>
+                <hr>
+                <h2><a id="c5">教育经历</a></h2>
+                    <p>
+                        <b>本科</b><br>
+                        中南大学</p>
+                <hr>
+                <h2><a id="c6">项目经历</a></h2>
+                    <p>
+                        <b>JAVA网盘</b><br>
+                        用JAVA完成模拟百度网盘的简易版网盘</p>
+                    <p>
+                        <b>JAVA聊天室</b><br>
+                        用JAVA实现聊天室和教师画板等</p>
+            </div>
+            <div style="text-align: center;float: left;font-size: 15px;width: 100%;font-family: 微软雅黑;margin-top: 20px;margin-bottom: 10px;">
+                共6条 1/1&ensp;
+                <span><button type="button" disabled="true">首页</button></span>
+                <span><button type="button" disabled="true">上一页</button></span> 
+                <span><button type="button" disabled="true">下一页</button></span> 
+                <span><button type="button" disabled="true">尾页</button></span>
+            </div>
+        </div>
+
+        <div id="catalogue" class="setbg" style="text-align:left;width:10%;">
+            <div style="font-size: 20px;">
+                <h3  style="margin-left: 20px;margin-right: 20px">目录：</h3>
+                <ol>
+                    <li><a href="#c1">基本信息</a></li>
+                    <li><a href="#c2">联系方式</a></li>
+                    <li><a href="#c3">能力描述</a></li>
+                    <li><a href="#c4">任职情况</a></li>
+                    <li><a href="#c5">教育经历</a></li>
+                    <li><a href="#c6" id="test">项目经历</a></li>
+                </ol>
+            </div>
+            <img id="toTop" class="toTop" src="Images/toTop.png" title="返回顶部" onclick="document.body.scrollTop=0;">
+        </div>
+    </div>
+    <div id="volumeDiv" class="volumeDiv" onmousemove="flag=false;" onmouseout="flag=true;">
+        <img id="makeMute" class="makeMute" src="Images/yinliang.png">
+        <progress id="volumeProgress" class="progress" value="0" max="100" onclick="changeVolumeProgress(event)"></progress>
+        <p id="volume" style="width: 20px;text-align: center;"></p>
+    </div>
+    <script>
+        initialize();
+        controlStatus();
+    </script>
+</body>
+</html>

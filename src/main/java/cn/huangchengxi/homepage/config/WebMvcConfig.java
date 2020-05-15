@@ -19,6 +19,7 @@
 /*    */   public void addViewControllers(ViewControllerRegistry registry) {
 /* 22 */     registry.addViewController("/bookManage/postBook").setViewName("postBook");
 /* 23 */     registry.addViewController("/bookManage").setViewName("manageBook");
+registry.addViewController("/RememberMe").setViewName("rememberme");
 /*    */   } @Autowired
 /*    */   LoginResInterceptor loginResInterceptor;
 /*    */   public void addResourceHandlers(ResourceHandlerRegistry registry) {
