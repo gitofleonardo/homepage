@@ -15,6 +15,8 @@
 /*    */   implements WebMvcConfigurer {
 /*    */   @Autowired
 /*    */   AdminResInterceptor adminResInterceptor;
+@Autowired
+LogInterceptor logInterceptor;
 /*    */   
 /*    */   public void addViewControllers(ViewControllerRegistry registry) {
 /* 22 */     registry.addViewController("/bookManage/postBook").setViewName("postBook");
@@ -27,14 +29,15 @@ registry.addViewController("/RememberMe").setViewName("rememberme");
 /* 28 */     registry.addResourceHandler("/pages/**").addResourceLocations("classpath:/templates/pages/");
 /* 29 */     registry.addResourceHandler("/xujinhua/**").addResourceLocations("classpath:/templates/xujinhua/");
 /* 30 */     registry.addResourceHandler("/dengyanqing/**").addResourceLocations("classpath:/templates/dengyanqing/");
-/* 31 */     registry.addResourceHandler("/imageResource/**").addResourceLocations("file:C:/server-images-protected/");
-/* 32 */     registry.addResourceHandler("/img/**").addResourceLocations("file:C:/server-images/");
+/* 31 */     registry.addResourceHandler("/imageResource/**").addResourceLocations("file:/home/server-images-protected/");
+/* 32 */     registry.addResourceHandler("/img/**").addResourceLocations("file:/home/server-images/");
 /*    */   }
 /*    */ 
 /*    */   
 /*    */   public void addInterceptors(InterceptorRegistry registry) {
 /* 37 */     registry.addInterceptor((HandlerInterceptor)this.adminResInterceptor).addPathPatterns("/imageResource/**", "/bookManage/**", "/bookManage","/modification","/modification/**","/postNote","/publication","/avatar");
 /* 38 */     registry.addInterceptor((HandlerInterceptor)this.loginResInterceptor).addPathPatterns("/center", "/infos", "/modifyinfos", "/modifyinfos-processing");
+registry.addInterceptor(logInterceptor).addPathPatterns("/**").excludePathPatterns("/static/**","/img/**");
 /*    */   }
 /*    */ }
 
